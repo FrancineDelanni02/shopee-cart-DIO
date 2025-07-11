@@ -11,12 +11,18 @@ async function listItems() {
 }
 
 async function removeItem(nameItem) {
-    for (let i = 0; i < cart.length; i++) {
-        if (cart[i].name == nameItem) {
-            cart.splice(i, 1)
-            return
+    // for (let i = 0; i < cart.length; i++) {
+    //     if (cart[i].name == nameItem) {
+    //         cart.splice(i, 1)
+    //         return
+    //     }
+    // }
+
+    cart.filter(
+        i => {
+            i.name != nameItem        
         }
-    }
+    )
 }
 
 async function deleteItem(nameItem) {

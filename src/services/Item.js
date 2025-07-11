@@ -3,7 +3,7 @@ async function createItem(name,price,quantity){
         name,
         price,
         quantity,
-        subtotal: () => quantity * price,
+        subtotal: quantity * price,
     }
 }
 
