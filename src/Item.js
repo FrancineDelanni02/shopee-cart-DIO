@@ -1,15 +1,10 @@
-class Item {
-    name
-    price
-    quantity
-    qtdAvailable
-
-    constructor(name, price, quantity) {
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
-        this.qtdAvailable = quantity;
+async function createItem(name,price,quantity){
+    return {
+        name,
+        price,
+        quantity,
+        subtotal: () => quantity * price,
     }
 }
 
-export default Item
+export default createItem;
