@@ -6,32 +6,38 @@ async function addItem(item) {
 
 async function listItems() {
     cart.forEach(i => {
-        console.log(`Nome: ${i.name} - Preço: ${i.price}`)
+        console.log(`Nome: ${i.name} - Preço: ${i.price} - Quantidade: ${i.quantity}`)
     })
 }
 
 async function removeItem(nameItem) {
-    // for (let i = 0; i < cart.length; i++) {
-    //     if (cart[i].name == nameItem) {
-    //         cart.splice(i, 1)
-    //         return
-    //     }
-    // }
+    const index = cart.findIndex((i) => i.name == nameItem)
+    if(index == -1){
+        console.log("Item não encontrado")
+        return 
+    }
 
-    cart.filter(
-        i => {
-            i.name != nameItem        
-        }
-    )
+    if(cart[index].quantity > 1){
+        cart[index].quantity--
+        cart[index].subtotal -= cart[index].price
+        return
+    }
+
+    if(cart[index].quantity == 1){
+        console.log("Deletando item...")
+        deleteItem(cart[index].name)
+    }
 }
 
 async function deleteItem(nameItem) {
-    for (let i = 0; i < cart.length; i++) {
-        if (cart[i].name == nameItem) {
-            cart.splice(i, 1)
-            i--
-        }
+    const index = cart.findIndex((i) => i.name == nameItem )
+
+    if (index != -1) {
+        cart.splice(index, 1)
+        return 
     }
+    
+    console.log("Item não encontrado!")
 }
 
 async function calculateTotal() {
