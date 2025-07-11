@@ -1,19 +1,25 @@
-//Update, Read, Create, Delete Items
 const cart = [];
 
 async function addItem(item) {
-    console.log("Adding item...");
+    if(item.qtdAvailable > 0){
+        cart.push(item)
+        item.qtdAvailable--;
+        return
+    }
+    console.log("O estoque desse item está vazio")
 }
 
-async function listItems(idItem) {
-    console.log("Showing item...")
+async function listItems() {
+   cart.forEach(i =>{
+        console.log(`Nome: ${i.name} - Preço: ${i.price}`)
+   })
 }
 
-async function removeItem(idItem) {
-    console.log("Removing item...")
+async function removeItem(nameItem) {
+
 }
 
-async function deleteItem(idItem) {
+async function deleteItem(nameItem) {
     console.log("Deleting item...")
 }
 
